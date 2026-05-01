@@ -1,318 +1,211 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-PT" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guilherme Costa - Portefólio</title>
-    <!-- Tailwind CSS -->
+    <title>Guilherme Costa | Portefólio Profissional</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome para ícones -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
                     colors: {
-                        primary: '#1e3a8a', // Azul Lusófona / Profissional
-                        secondary: '#3b82f6',
-                        dark: '#0f172a'
+                        cvBg: '#f1f5f9',       // Fundo cinza-azulado muito claro (estilo profissional)
+                        cvSurface: '#ffffff',  // Branco puro para os cartões e secções de destaque
+                        cvNavy: '#0f172a',     // Azul marinho profundo para títulos e texto principal
+                        cvBlue: '#2563eb',     // Azul vibrante para destaques e ícones
+                        cvText: '#334155',     // Cinza escuro para o texto de leitura
+                        cvBorder: '#e2e8f0'    // Bordas subtis
+                    },
+                    fontFamily: {
+                        sans: ['-apple-system', 'BlinkMacSystemFont', 'San Francisco', 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        '4xl': '2rem',
                     }
                 }
             }
         }
     </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        html { scroll-behavior: smooth; }
-        .swot-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .swot-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); }
+        body { 
+            font-family: '-apple-system', 'Inter', sans-serif; 
+            background-color: #f1f5f9;
+        }
+        .fade-in { animation: fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        
+        /* Barra de scroll personalizada */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans antialiased">
+<body class="bg-cvBg text-cvText antialiased selection:bg-cvBlue selection:text-white">
 
     <!-- Navegação -->
-    <nav class="fixed w-full bg-white/90 backdrop-blur-md shadow-sm z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
-                <div class="flex-shrink-0 font-bold text-xl text-primary tracking-tight">
-                    &lt;Guilhas /&gt;
+    <nav class="fixed w-full z-50 bg-cvBg/80 backdrop-blur-xl border-b border-cvBorder transition-all">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-xl font-bold tracking-tight">
+                        <span class="text-cvNavy">Guilherme</span> <span class="text-cvBlue">Costa.</span>
+                    </a>
                 </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#sobre" class="text-gray-600 hover:text-primary transition-colors font-medium">Sobre Mim</a>
-                    <a href="#habilidades" class="text-gray-600 hover:text-primary transition-colors font-medium">Competências</a>
-                    <a href="#portfolio" class="text-gray-600 hover:text-primary transition-colors font-medium">Portefólio</a>
-                    <a href="#swot" class="text-gray-600 hover:text-primary transition-colors font-medium">Análise SWOT</a>
-                    <a href="#elementos" class="text-primary hover:text-secondary transition-colors font-bold">Avaliação Contínua</a>
+                <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                    <a href="#elementos" class="text-cvText hover:text-cvNavy transition-colors">Portefólio</a>
+                    <a href="#sobre" class="text-cvText hover:text-cvNavy transition-colors">Sobre Mim</a>
+                    <a href="#projetos" class="text-cvText hover:text-cvNavy transition-colors">Projetos</a>
+                    <a href="#swot" class="text-cvText hover:text-cvNavy transition-colors">Análise SWOT</a>
+                    <a href="#contactos" class="text-cvNavy font-bold hover:text-cvBlue transition-colors">Vamos conversar</a>
                 </div>
-                <!-- Mobile menu button -->
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-primary focus:outline-none">
-                        <i class="fas fa-bars text-2xl"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#sobre" class="block px-3 py-2 text-gray-600 font-medium">Sobre Mim</a>
-                <a href="#portfolio" class="block px-3 py-2 text-gray-600 font-medium">Portefólio</a>
-                <a href="#swot" class="block px-3 py-2 text-gray-600 font-medium">Análise SWOT</a>
-                <a href="#elementos" class="block px-3 py-2 text-primary font-bold">Avaliação Contínua</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="pt-32 pb-20 md:pt-40 md:pb-28 bg-gradient-to-br from-dark to-primary text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col-reverse md:flex-row items-center gap-12">
-            <div class="w-full md:w-2/3 text-center md:text-left">
-                <h2 class="text-secondary font-semibold tracking-wider uppercase mb-2">Olá, o meu nome é</h2>
-                <h1 class="text-4xl md:text-6xl font-bold mb-4">Guilherme Costa</h1>
-                <h3 class="text-xl md:text-2xl text-gray-300 mb-6">Estudante de Engenharia Informática @ Universidade Lusófona</h3>
-                <p class="text-lg text-gray-400 mb-8 max-w-2xl mx-auto md:mx-0">
-                    Apaixonado por otimização, gestão de memória e desenvolvimento de software. 
-                    Com foco em criar código limpo e arquiteturas eficientes.
-                </p>
-                <div class="flex flex-wrap gap-4 justify-center md:justify-start">
-                    <a href="#elementos" class="bg-secondary hover:bg-blue-400 text-white px-6 py-3 rounded-lg font-medium transition-colors shadow-lg">
-                        <i class="fas fa-folder-open mr-2"></i> Elementos de Avaliação
-                    </a>
-                    <a href="#portfolio" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-6 py-3 rounded-lg font-medium transition-colors backdrop-blur-sm">
-                        <i class="fas fa-code mr-2"></i> Ver Portefólio
-                    </a>
-                </div>
-                <div class="mt-8 flex gap-6 justify-center md:justify-start text-gray-400">
-                    <a href="https://github.com/costavcruz" target="_blank" class="hover:text-white transition-colors text-2xl"><i class="fab fa-github"></i></a>
-                    <a href="https://linkedin.com/in/guilherme-costavcruz" target="_blank" class="hover:text-white transition-colors text-2xl"><i class="fab fa-linkedin"></i></a>
-                    <a href="mailto:guilherme.anselmo.ccosta@gmail.com" class="hover:text-white transition-colors text-2xl"><i class="fas fa-envelope"></i></a>
-                </div>
+    <section class="pt-40 pb-24 md:pt-56 md:pb-40 px-4">
+        <div class="max-w-4xl mx-auto text-left fade-in">
+            <h1 class="text-4xl md:text-6xl font-normal tracking-tight text-cvNavy mb-6 leading-tight">
+                Olá, sou o <strong class="font-bold"><span class="text-cvNavy">Guilherme</span> <span class="text-cvBlue">Costa</span></strong>, <br class="hidden md:block"/> estudante de Engenharia Informática, sediado em Lisboa.
+            </h1>
+            
+            <div class="mt-10 flex flex-wrap items-center justify-start gap-8 text-cvText font-medium fade-in delay-1">
+                <a href="mailto:guilherme.anselmo.ccosta@gmail.com" class="flex items-center gap-2 hover:text-cvBlue transition-colors text-lg">
+                    <svg class="w-5 h-5 text-cvBlue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    guilherme.anselmo.ccosta@gmail.com
+                </a>
+                <a href="tel:+351936650045" class="flex items-center gap-2 hover:text-cvBlue transition-colors text-lg">
+                    <svg class="w-5 h-5 text-cvBlue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                    +351 936 650 045
+                </a>
             </div>
-            <div class="w-1/2 md:w-1/3 flex justify-center">
-                <div class="relative">
-                    <!-- Placeholder para a tua foto -->
-                    <div class="w-48 h-48 md:w-64 md:h-64 rounded-full border-4 border-secondary/50 overflow-hidden shadow-2xl relative z-10 bg-gray-800 flex items-center justify-center">
-                        <img src="https://placehold.co/400x400/1e3a8a/ffffff?text=Guilhas" alt="" class="object-cover w-full h-full">
-                    </div>
-                    <!-- Elemento decorativo -->
-                    <div class="absolute inset-0 bg-secondary rounded-full blur-3xl opacity-20 -z-10 animate-pulse"></div>
-                </div>
+            
+            <div class="mt-12 flex flex-col sm:flex-row justify-start gap-4 fade-in delay-2">
+                <a href="#elementos" class="px-8 py-4 bg-cvNavy text-white font-medium rounded-full hover:bg-cvBlue transition-all text-center shadow-lg shadow-cvNavy/20">
+                    Ver Elementos de Avaliação
+                </a>
+                <a href="#contactos" class="px-8 py-4 bg-cvSurface border border-cvBorder text-cvNavy font-bold rounded-full hover:bg-white hover:border-cvBlue transition-all text-center">
+                    Contactar
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Sobre Mim & Educação -->
-    <section id="sobre" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-                <!-- Sobre Mim -->
-                <div>
-                    <h2 class="text-3xl font-bold text-gray-900 mb-6 inline-block border-b-4 border-secondary pb-2">Sobre Mim</h2>
-                    <p class="text-gray-600 mb-4 leading-relaxed">
-                        Sou o Guilhas, estudante de Engenharia Informática na Universidade Lusófona (Lisboa, PT). Tenho um domínio prático em linguagens como Kotlin, Java e C, com um foco particular na otimização e gestão eficiente de memória em tempo de execução.
-                    </p>
-                    <p class="text-gray-600 mb-6 leading-relaxed">
-                        A minha experiência prévia em atendimento ao público num ambiente de forte pressão (restauração) dotou-me de fortes capacidades de comunicação, empatia e gestão de tempo sob stress temporal. Estas <i>soft skills</i> são o complemento perfeito para as minhas competências técnicas, permitindo-me atuar de forma eficaz na tradução de requisitos para código computacional.
-                    </p>
-                    <div class="flex items-center gap-4 text-sm text-gray-500 font-medium bg-gray-50 p-4 rounded-lg border border-gray-100">
-                        <div class="flex items-center gap-2"><i class="fas fa-map-marker-alt text-secondary"></i> Torres Vedras / Lisboa</div>
-                        <div class="flex items-center gap-2"><i class="fas fa-globe text-secondary"></i> PT, EN, ES, FR</div>
+    <!-- Portefólio (Secção Elementos) -->
+    <section id="elementos" class="py-24 bg-cvSurface border-y border-cvBorder">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-cvNavy tracking-tight inline-block border-b-4 border-cvBlue pb-2">Portefólio.</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Resume -->
+                <a href="#" class="group block p-10 bg-cvBg rounded-4xl border border-cvBorder hover:border-cvBlue hover:bg-white transition-all duration-300 shadow-sm hover:shadow-md">
+                    <div class="w-12 h-12 bg-cvNavy text-white rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-all duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                     </div>
-                </div>
+                    <h3 class="text-xl font-bold text-cvNavy mb-3 tracking-tight">Resume (CV)</h3>
+                    <p class="text-cvText leading-relaxed">Versão resumida com foco nas competências.</p>
+                </a>
 
-                <!-- Educação e Experiência Timeline -->
-                <div>
-                    <h2 class="text-3xl font-bold text-gray-900 mb-6 inline-block border-b-4 border-secondary pb-2">Percurso</h2>
-                    <div class="space-y-6 border-l-2 border-gray-200 pl-4 ml-2">
-                        <!-- Item 1 -->
-                        <div class="relative">
-                            <span class="absolute -left-[25px] bg-secondary w-4 h-4 rounded-full border-4 border-white mt-1"></span>
-                            <h3 class="font-bold text-lg text-gray-900">Licenciatura em Engenharia Informática</h3>
-                            <p class="text-primary font-medium text-sm mb-1">Universidade Lusófona | 09/2025 - Presente</p>
-                            <p class="text-gray-600 text-sm">Destaque para excelência em Algoritmia e Estruturas de Dados. Classificação de 20/20 em C e 16/20 em Kotlin, com ênfase em arquitetura "Clean Code".</p>
-                        </div>
-                        <!-- Item 2 -->
-                        <div class="relative">
-                            <span class="absolute -left-[25px] bg-gray-400 w-4 h-4 rounded-full border-4 border-white mt-1"></span>
-                            <h3 class="font-bold text-lg text-gray-900">Empregado de Mesa</h3>
-                            <p class="text-gray-500 font-medium text-sm mb-1">Restaurante "Cantinho dos 3" | 06/2025 - 07/2025</p>
-                            <p class="text-gray-600 text-sm">Operação ágil em evento de massas (Feira de São Pedro). Foco em gestão de tempo e comunicação interpessoal sob forte pressão.</p>
-                        </div>
-                        <!-- Item 3 -->
-                        <div class="relative">
-                            <span class="absolute -left-[25px] bg-gray-400 w-4 h-4 rounded-full border-4 border-white mt-1"></span>
-                            <h3 class="font-bold text-lg text-gray-900">Formação Complementar</h3>
-                            <p class="text-gray-600 text-sm">
-                                • Gemini no dia a dia universitário (03/2026)<br>
-                                • Workshop de Inteligência Artificial, Claranet (03/2026)
+                <!-- LinkedIn -->
+                <a href="https://linkedin.com/in/guilherme-costavcruz" target="_blank" class="group block p-10 bg-cvBg rounded-4xl border border-cvBorder hover:border-cvBlue hover:bg-white transition-all duration-300 shadow-sm hover:shadow-md">
+                    <div class="w-12 h-12 bg-cvNavy text-white rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-all duration-300">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-cvNavy mb-3 tracking-tight">LinkedIn</h3>
+                    <p class="text-cvText leading-relaxed">Perfil profissional atualizado e rede de contactos.</p>
+                </a>
+
+                <!-- Vídeo CV -->
+                <a href="#" class="group block p-10 bg-cvBg rounded-4xl border border-cvBorder hover:border-cvBlue hover:bg-white transition-all duration-300 shadow-sm hover:shadow-md">
+                    <div class="w-12 h-12 bg-cvNavy text-white rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-all duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-cvNavy mb-3 tracking-tight">Vídeo CV</h3>
+                    <p class="text-cvText leading-relaxed">Apresentação pessoal curta e objetiva.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Mim & Competências -->
+    <section id="sobre" class="py-32 bg-cvBg">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-24">
+                
+                <!-- Biografia -->
+                <div class="flex flex-col justify-start">
+                    <div class="mb-10 inline-block">
+                        <h2 class="text-3xl md:text-4xl font-bold text-cvNavy tracking-tight inline-block border-b-4 border-cvBlue pb-2">Sobre Mim</h2>
+                    </div>
+                    <div class="space-y-6 text-lg text-cvText leading-relaxed">
+                        <p>
+                            Tenho domínio prático das linguagens Kotlin, Python, Java e C, com especial foco na otimização, gestão de memória e na aplicação de princípios de Clean Code. A minha jornada académica na Universidade Lusófona tem sido pautada pelo rigor analítico e pela criatividade.
+                        </p>
+                        
+                        <div class="bg-cvSurface border border-cvBorder rounded-xl p-8 shadow-sm">
+                            <p class="text-cvText">
+                                Acredito que a excelência técnica em consultoria exige fortes competências comportamentais. A minha experiência prévia em atendimento ao público, o voluntariado em eventos de grande dimensão (como os Bang Awards) e a experiência como catequista dotaram-me de empatia e capacidade de adaptar o meu discurso a diferentes perfis, traduzindo requisitos de negócio complexos em soluções de software elegantes.
                             </p>
                         </div>
+
+                        <p>
+                            A inovação é o meu motor. Exploro ativamente a Inteligência Artificial Generativa para otimizar processos e, em paralelo, aplico a disciplina que aprendi na música para defender ideias de forma confiante.
+                        </p>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Habilidades -->
-    <section id="habilidades" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">As Minhas <span class="text-primary">Competências</span></h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <!-- Hard Skills -->
-                <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
-                    <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
-                        <i class="fas fa-laptop-code text-secondary"></i> Hard Skills
-                    </h3>
+                <!-- Competências -->
+                <div class="flex flex-col justify-start">
+                    <div class="mb-10 inline-block">
+                        <h2 class="text-3xl md:text-4xl font-bold text-cvNavy tracking-tight inline-block border-b-4 border-cvBlue pb-2">Competências</h2>
+                    </div>
                     
-                    <div class="space-y-4">
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="font-medium text-gray-700">Kotlin (Clean Code & POO)</span>
-                                <span class="text-sm text-secondary font-bold">Avançado</span>
+                    <div class="mb-12">
+                        <h3 class="text-xl font-bold text-cvNavy mb-6">Hard Skills</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between text-sm mb-2 font-medium">
+                                    <span class="text-cvText">Kotlin / Python</span>
+                                    <span class="text-cvNavy">Avançado</span>
+                                </div>
+                                <div class="w-full bg-cvBorder rounded-full h-2"><div class="bg-cvBlue h-2 rounded-full" style="width: 85%"></div></div>
                             </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-secondary h-2 rounded-full" style="width: 85%"></div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-2 font-medium">
+                                    <span class="text-cvText">Java</span>
+                                    <span class="text-cvNavy">Intermédio</span>
+                                </div>
+                                <div class="w-full bg-cvBorder rounded-full h-2"><div class="bg-cvBlue h-2 rounded-full" style="width: 70%"></div></div>
                             </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="font-medium text-gray-700">Python</span>
-                                <span class="text-sm text-secondary font-bold">Avançado</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-secondary h-2 rounded-full" style="width: 80%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="font-medium text-gray-700">Java</span>
-                                <span class="text-sm text-secondary font-bold">Intermédio</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-secondary h-2 rounded-full" style="width: 65%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-1">
-                                <span class="font-medium text-gray-700">Linguagem C (Otimização)</span>
-                                <span class="text-sm text-secondary font-bold">Excelência (20/20)</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="bg-secondary h-2 rounded-full" style="width: 95%"></div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-2 font-medium">
+                                    <span class="text-cvText">C</span>
+                                    <span class="text-cvNavy">Básico</span>
+                                </div>
+                                <div class="w-full bg-cvBorder rounded-full h-2"><div class="bg-cvBlue h-2 rounded-full" style="width: 40%"></div></div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Soft Skills -->
-                <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
-                    <h3 class="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
-                        <i class="fas fa-users text-secondary"></i> Soft Skills
-                    </h3>
-                    
-                    <div class="flex flex-wrap gap-3">
-                        <span class="px-4 py-2 bg-blue-50 text-primary border border-blue-100 rounded-lg font-medium text-sm flex items-center gap-2">
-                            <i class="fas fa-check-circle text-secondary"></i> Trabalho em Equipa
-                        </span>
-                        <span class="px-4 py-2 bg-blue-50 text-primary border border-blue-100 rounded-lg font-medium text-sm flex items-center gap-2">
-                            <i class="fas fa-check-circle text-secondary"></i> Comunicação Interpessoal
-                        </span>
-                        <span class="px-4 py-2 bg-blue-50 text-primary border border-blue-100 rounded-lg font-medium text-sm flex items-center gap-2">
-                            <i class="fas fa-check-circle text-secondary"></i> Resolução de Problemas
-                        </span>
-                        <span class="px-4 py-2 bg-blue-50 text-primary border border-blue-100 rounded-lg font-medium text-sm flex items-center gap-2">
-                            <i class="fas fa-check-circle text-secondary"></i> Pensamento Crítico
-                        </span>
-                        <span class="px-4 py-2 bg-blue-50 text-primary border border-blue-100 rounded-lg font-medium text-sm flex items-center gap-2">
-                            <i class="fas fa-check-circle text-secondary"></i> Adaptabilidade
-                        </span>
-                        <span class="px-4 py-2 bg-blue-50 text-primary border border-blue-100 rounded-lg font-medium text-sm flex items-center gap-2">
-                            <i class="fas fa-check-circle text-secondary"></i> Time Management
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Portefólio (Galeria de Projetos) -->
-    <section id="portfolio" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">O Meu <span class="text-primary">Portefólio</span></h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Uma seleção dos projetos desenvolvidos ao longo do meu percurso académico e pessoal.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Projeto 1: Minesweeper -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 group hover:shadow-xl transition-shadow duration-300">
-                    <div class="h-48 bg-gray-200 overflow-hidden relative">
-                        <!-- Placeholder imagem -->
-                        <img src="https://images.unsplash.com/photo-1550439062-609e1531270e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute top-4 right-4 bg-gray-900/80 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-full">
-                            Kotlin
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">Minesweeper (Campo DEISlado)</h3>
-                        <p class="text-sm text-gray-500 mb-4">Out 2025 - Dez 2025</p>
-                        <p class="text-gray-600 text-sm mb-6">
-                            Jogo lógico estruturado com Programação Orientada a Objetos (POO). Inclui algoritmos de geração estocástica de minas e revelação recursiva, executado através de uma interface de terminal com controlo rigoroso de versões.
-                        </p>
-                        <div class="flex justify-between items-center mt-auto">
-                            <a href="https://github.com/costavcruz" target="_blank" class="text-primary font-medium hover:text-secondary inline-flex items-center gap-1 text-sm">
-                                Ver Código <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Projeto Placeholder para volume visual -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 group hover:shadow-xl transition-shadow duration-300">
-                    <div class="h-48 bg-gray-200 overflow-hidden relative flex items-center justify-center bg-gradient-to-br from-slate-700 to-slate-900">
-                        <i class="fas fa-microchip text-5xl text-gray-500/50 group-hover:scale-110 transition-transform duration-500"></i>
-                        <div class="absolute top-4 right-4 bg-gray-900/80 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-full">
-                            Linguagem C
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">Gestor de Memória Low-Level</h3>
-                        <p class="text-sm text-gray-500 mb-4">Projeto Académico</p>
-                        <p class="text-gray-600 text-sm mb-6">
-                            Desenvolvimento de algoritmos focados na otimização da memória em C. O projeto garantiu a classificação máxima de 20/20 devido à eficiência em tempo de execução e alocação dinâmica.
-                        </p>
-                        <div class="flex justify-between items-center mt-auto">
-                            <a href="#" class="text-primary font-medium hover:text-secondary inline-flex items-center gap-1 text-sm">
-                                Em Breve <i class="fas fa-lock"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Projeto Website (este portefólio) -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 group hover:shadow-xl transition-shadow duration-300">
-                    <div class="h-48 bg-gray-200 overflow-hidden relative">
-                         <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <div class="absolute top-4 right-4 bg-gray-900/80 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-full">
-                            HTML/CSS
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">Website Portefólio Pessoal</h3>
-                        <p class="text-sm text-gray-500 mb-4">Abril 2026</p>
-                        <p class="text-gray-600 text-sm mb-6">
-                            Desenvolvimento completo deste site "Single Page Application" focado em marketing pessoal, responsivo e que agrega todas as vertentes pedidas na cadeira de Competências Comportamentais.
-                        </p>
-                        <div class="flex justify-between items-center mt-auto">
-                            <a href="#topo" class="text-primary font-medium hover:text-secondary inline-flex items-center gap-1 text-sm">
-                                Estás a vê-lo! <i class="fas fa-eye"></i>
-                            </a>
+                    <div>
+                        <h3 class="text-xl font-bold text-cvNavy mb-6">Soft Skills & Outras Áreas</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="px-5 py-2.5 bg-cvSurface border border-cvBorder rounded-full text-sm font-medium text-cvNavy hover:border-cvBlue transition-colors">Comunicação Interpessoal</span>
+                            <span class="px-5 py-2.5 bg-cvSurface border border-cvBorder rounded-full text-sm font-medium text-cvNavy hover:border-cvBlue transition-colors">Adaptabilidade</span>
+                            <span class="px-5 py-2.5 bg-cvSurface border border-cvBorder rounded-full text-sm font-medium text-cvNavy hover:border-cvBlue transition-colors">Trabalho em Equipa</span>
+                            <span class="px-5 py-2.5 bg-cvSurface border border-cvBorder rounded-full text-sm font-medium text-cvNavy hover:border-cvBlue transition-colors">Pensamento Crítico</span>
+                            <span class="px-5 py-2.5 bg-cvSurface border border-cvBorder rounded-full text-sm font-medium text-cvNavy hover:border-cvBlue transition-colors">Clean Code</span>
+                            <span class="px-5 py-2.5 bg-cvSurface border border-cvBorder rounded-full text-sm font-medium text-cvNavy hover:border-cvBlue transition-colors">Gen AI</span>
                         </div>
                     </div>
                 </div>
@@ -320,175 +213,259 @@
         </div>
     </section>
 
-    <!-- Análise SWOT conforme guião da aula -->
-    <section id="swot" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">Análise <span class="text-primary">SWOT</span></h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Uma autoavaliação estratégica das minhas perspetivas no mercado de trabalho de TI.</p>
-            </div>
-
-            <!-- Grelha SWOT (Estilo Matriz 2x2 colorida, baseada no guião) -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+    <!-- Experiência e Educação -->
+    <section class="py-32 bg-cvSurface border-y border-cvBorder">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-24">
                 
-                <!-- Strengths (Forças) - Azul -->
-                <div class="swot-card bg-blue-50 border-t-4 border-blue-500 rounded-b-xl shadow-sm p-8">
-                    <div class="flex items-center gap-3 mb-4 text-blue-700">
-                        <div class="bg-blue-100 p-3 rounded-full">
-                            <i class="fas fa-dumbbell text-xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold uppercase tracking-wide">Strengths</h3>
+                <!-- Educação -->
+                <div>
+                    <div class="mb-12 inline-block">
+                        <h2 class="text-3xl font-bold text-cvNavy tracking-tight inline-block border-b-4 border-cvBlue pb-2">Educação & Cursos</h2>
                     </div>
-                    <ul class="space-y-3 text-gray-700">
-                        <li class="flex items-start gap-2"><i class="fas fa-check text-blue-500 mt-1"></i> Excelentes notas nas bases da programação (C: 20/20, Kotlin: 16/20).</li>
-                        <li class="flex items-start gap-2"><i class="fas fa-check text-blue-500 mt-1"></i> Boa resiliência sob pressão e excelente "Time Management" provado em experiência de restauração.</li>
-                        <li class="flex items-start gap-2"><i class="fas fa-check text-blue-500 mt-1"></i> Forte raciocínio lógico focado em arquitetura limpa (Clean Code).</li>
-                    </ul>
+                    
+                    <div class="relative pl-6 border-l-2 border-cvBorder space-y-12">
+                        <div class="relative">
+                            <div class="absolute -left-[31px] top-1 bg-cvBlue h-4 w-4 rounded-full border-4 border-cvSurface box-content shadow-sm"></div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-cvBlue">09/2023 - Presente</span>
+                            <h3 class="text-xl font-bold text-cvNavy mt-2">Licenciatura em Engenharia Informática</h3>
+                            <p class="text-cvText mt-1 font-medium">Universidade Lusófona, Lisboa</p>
+                        </div>
+                        <div class="relative">
+                            <div class="absolute -left-[31px] top-1 bg-white border border-cvBorder h-4 w-4 rounded-full border-4 border-cvSurface box-content shadow-sm"></div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-cvText">09/2024</span>
+                            <h3 class="text-xl font-bold text-cvNavy mt-2">Gemini no dia a dia universitário</h3>
+                            <p class="text-cvText mt-1 font-medium">Universidade Lusófona</p>
+                            <a href="Guilherme_Anselmo_TecWeb26_Google_IA.pdf" target="_blank" class="inline-flex items-center mt-2 text-sm font-bold text-cvBlue hover:text-cvNavy transition-colors">
+                                <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                                Ver Certificado
+                            </a>
+                        </div>
+                        <div class="relative">
+                            <div class="absolute -left-[31px] top-1 bg-white border border-cvBorder h-4 w-4 rounded-full border-4 border-cvSurface box-content shadow-sm"></div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-cvText">09/2025</span>
+                            <h3 class="text-xl font-bold text-cvNavy mt-2">Workshop de Inteligência Artificial</h3>
+                            <p class="text-cvText mt-1 font-medium">Claranet</p>
+                            <a href="Guilherme_Anselmo_TecWeb26_Workshop_de_IA.pdf" target="_blank" class="inline-flex items-center mt-2 text-sm font-bold text-cvBlue hover:text-cvNavy transition-colors">
+                                <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                                Ver Certificado
+                            </a>
+                        </div>
+                        <div class="relative">
+                            <div class="absolute -left-[31px] top-1 bg-white border border-cvBorder h-4 w-4 rounded-full border-4 border-cvSurface box-content shadow-sm"></div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-cvText">2022 - 2025</span>
+                            <h3 class="text-xl font-bold text-cvNavy mt-2">Ensino Secundário - Ciências Socioeconómicas</h3>
+                            <p class="text-cvText mt-1 font-medium">Escola Secundária Madeira Torres</p>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Weaknesses (Fraquezas) - Verde -->
-                <div class="swot-card bg-emerald-50 border-t-4 border-emerald-500 rounded-b-xl shadow-sm p-8">
-                    <div class="flex items-center gap-3 mb-4 text-emerald-700">
-                        <div class="bg-emerald-100 p-3 rounded-full">
-                            <i class="fas fa-link-slash text-xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold uppercase tracking-wide">Weaknesses</h3>
+                <!-- Experiência -->
+                <div>
+                    <div class="mb-12 inline-block">
+                        <h2 class="text-3xl font-bold text-cvNavy tracking-tight inline-block border-b-4 border-cvBlue pb-2">Experiência</h2>
                     </div>
-                    <ul class="space-y-3 text-gray-700">
-                        <li class="flex items-start gap-2"><i class="fas fa-exclamation text-emerald-500 mt-1 ml-1"></i> Falta de experiência profissional direta no setor tecnológico (apenas projetos académicos).</li>
-                        <li class="flex items-start gap-2"><i class="fas fa-exclamation text-emerald-500 mt-1 ml-1"></i> Ainda a meio da licenciatura (em fase de expansão dos conhecimentos base).</li>
-                        <li class="flex items-start gap-2"><i class="fas fa-exclamation text-emerald-500 mt-1 ml-1"></i> Proficiência básica em Francês e Espanhol, limitando a comunicação nesses mercados nativos.</li>
-                    </ul>
-                </div>
-
-                <!-- Opportunities (Oportunidades) - Roxo -->
-                <div class="swot-card bg-purple-50 border-t-4 border-purple-500 rounded-b-xl shadow-sm p-8">
-                    <div class="flex items-center gap-3 mb-4 text-purple-700">
-                        <div class="bg-purple-100 p-3 rounded-full">
-                            <i class="fas fa-stairs text-xl"></i>
+                    
+                    <div class="relative pl-6 border-l-2 border-cvBorder space-y-12">
+                        <div class="relative">
+                            <div class="absolute -left-[31px] top-1 bg-white border border-cvBorder h-4 w-4 rounded-full border-4 border-cvSurface box-content shadow-sm"></div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-cvText">09/2023, 09/2024, 09/2025</span>
+                            <h3 class="text-xl font-bold text-cvNavy mt-2">Voluntariado Técnico</h3>
+                            <p class="text-cvNavy font-medium mt-1">Bang Awards e Festival Novas Invasões, Torres Vedras.</p>
+                            <p class="text-sm text-cvText mt-2 leading-relaxed">Treino sob pressão e resolução de imprevistos logísticos.</p>
                         </div>
-                        <h3 class="text-2xl font-bold uppercase tracking-wide">Opportunities</h3>
-                    </div>
-                    <ul class="space-y-3 text-gray-700">
-                        <li class="flex items-start gap-2"><i class="fas fa-arrow-right text-purple-500 mt-1"></i> Expansão massiva da área de Inteligência Artificial (área já introduzida em workshops recentes).</li>
-                        <li class="flex items-start gap-2"><i class="fas fa-arrow-right text-purple-500 mt-1"></i> Procura crescente por perfis que dominam otimização low-level (C/Java) e metodologias sólidas.</li>
-                        <li class="flex items-start gap-2"><i class="fas fa-arrow-right text-purple-500 mt-1"></i> Programas de estágios de verão promovidos por grandes consultoras de IT em Lisboa.</li>
-                    </ul>
-                </div>
-
-                <!-- Threats (Ameaças) - Vermelho -->
-                <div class="swot-card bg-red-50 border-t-4 border-red-500 rounded-b-xl shadow-sm p-8">
-                    <div class="flex items-center gap-3 mb-4 text-red-700">
-                        <div class="bg-red-100 p-3 rounded-full">
-                            <i class="fas fa-bomb text-xl"></i>
+                        <div class="relative">
+                            <div class="absolute -left-[31px] top-1 bg-white border border-cvBorder h-4 w-4 rounded-full border-4 border-cvSurface box-content shadow-sm"></div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-cvText">2024 - 2025</span>
+                            <h3 class="text-xl font-bold text-cvNavy mt-2">Catequista</h3>
+                            <p class="text-cvText mt-1 leading-relaxed">Adaptação de discurso e facilitação de comunicação intergeracional.</p>
                         </div>
-                        <h3 class="text-2xl font-bold uppercase tracking-wide">Threats</h3>
+                        <div class="relative">
+                            <div class="absolute -left-[31px] top-1 bg-white border border-cvBorder h-4 w-4 rounded-full border-4 border-cvSurface box-content shadow-sm"></div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-cvText">06/2025 - 07/2025</span>
+                            <h3 class="text-xl font-bold text-cvNavy mt-2">Empregado de Mesa</h3>
+                            <p class="text-cvText mt-1 font-medium">Restaurante "Cantinho dos 3", Feira de São Pedro</p>
+                        </div>
                     </div>
-                    <ul class="space-y-3 text-gray-700">
-                        <li class="flex items-start gap-2"><i class="fas fa-triangle-exclamation text-red-500 mt-1"></i> Setor tecnológico com entrada de concorrência global devido ao remote-work.</li>
-                        <li class="flex items-start gap-2"><i class="fas fa-triangle-exclamation text-red-500 mt-1"></i> Rápida obsolescência de linguagens/frameworks que requer adaptação e estudo diário e contínuo.</li>
-                        <li class="flex items-start gap-2"><i class="fas fa-triangle-exclamation text-red-500 mt-1"></i> Ferramentas de Gen-AI a automatizarem tarefas básicas de "entry-level developers".</li>
-                    </ul>
                 </div>
-
             </div>
         </div>
     </section>
 
+    <!-- Projetos -->
+    <section id="projetos" class="py-32 bg-cvBg">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-cvNavy tracking-tight inline-block border-b-4 border-cvBlue pb-2">Projetos</h2>
+            </div>
 
-    <!-- SEÇÃO OBRIGATÓRIA DA AVALIAÇÃO: ELEMENTOS -->
-    <section id="elementos" class="py-20 bg-dark text-white relative overflow-hidden">
-        <!-- Background Decorativo -->
-        <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-10 pointer-events-none">
-            <div class="absolute -top-24 -right-24 w-96 h-96 bg-secondary rounded-full blur-3xl"></div>
-            <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-primary rounded-full blur-3xl"></div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Projeto 1 -->
+                <div class="bg-cvSurface rounded-[2.5rem] border border-cvBorder p-12 flex flex-col justify-between group hover:shadow-xl transition-all duration-500">
+                    <div>
+                        <div class="flex items-center gap-3 mb-6">
+                            <span class="bg-cvNavy text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider">Kotlin</span>
+                        </div>
+                        <h3 class="text-3xl font-bold text-cvNavy mb-6 tracking-tight">Minesweeper <br><span class="text-cvBlue">(Campo DEISlado)</span></h3>
+                        <p class="text-cvText text-lg leading-relaxed mb-10">
+                            Jogo lógico inspirado no Campo Minado, estruturado com bases em POO. Conceção de algoritmos de revelação recursiva e interface de terminal.
+                        </p>
+                    </div>
+                    <div>
+                        <a href="https://github.com/costavcruz" target="_blank" class="inline-flex items-center text-sm font-bold text-cvNavy hover:text-cvBlue transition-colors">
+                            Ver no GitHub
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Futuro Projeto -->
+                <div class="bg-cvBg/50 rounded-[2.5rem] border-2 border-dashed border-cvBorder p-12 flex flex-col items-center justify-center text-center min-h-[400px]">
+                    <div class="w-16 h-16 rounded-full bg-cvSurface flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-cvNavy" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-cvNavy mb-3 tracking-tight text-center">Novos projetos a caminho</h3>
+                    <p class="text-cvText px-6">Explorações com IA Generativa e Integração de Sistemas em desenvolvimento.</p>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-16 border-b border-gray-700 pb-8">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Elementos de <span class="text-secondary">Avaliação Contínua</span></h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">
-                    Acesso direto aos recursos solicitados no âmbito da cadeira de <strong>Competências Comportamentais</strong>.
-                </p>
+    <!-- Análise SWOT -->
+    <section id="swot" class="py-32 bg-cvSurface border-y border-cvBorder">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <h2 class="text-3xl md:text-4xl font-bold text-cvNavy tracking-tight inline-block border-b-4 border-cvBlue pb-2">Análise SWOT</h2>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- 1. Resume -->
-                <a href="docs/Guilherme_Costa_Resume.pdf" target="_blank" class="group bg-gray-800/80 hover:bg-secondary border border-gray-700 hover:border-secondary p-8 rounded-xl text-center transition-all duration-300 flex flex-col items-center">
-                    <div class="w-16 h-16 bg-gray-700 group-hover:bg-white/20 rounded-full flex items-center justify-center mb-4 transition-colors">
-                        <i class="fas fa-file-alt text-2xl text-secondary group-hover:text-white"></i>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Strengths -->
+                <div class="bg-cvBg p-10 rounded-[2rem] border border-cvBorder shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex items-center mb-6">
+                        <h3 class="text-2xl font-bold text-cvNavy tracking-tight">Forças</h3>
+                        <span class="ml-auto text-cvBlue font-bold text-xl">S</span>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-2">1. Resume (CV)</h3>
-                    <p class="text-sm text-gray-400 group-hover:text-blue-100 mb-4">Versão otimizada (1 página) focada em competências.</p>
-                    <span class="mt-auto text-xs font-bold uppercase tracking-wider text-secondary group-hover:text-white">Visualizar PDF <i class="fas fa-external-link-alt ml-1"></i></span>
-                </a>
+                    <ul class="space-y-4 text-cvText leading-relaxed">
+                        <li class="flex items-start"><span class="mr-3 text-cvNavy font-bold">•</span> Base técnica sólida em Kotlin, Python e Java.</li>
+                        <li class="flex items-start"><span class="mr-3 text-cvNavy font-bold">•</span> Soft skills desenvolvidas em voluntariado e atendimento.</li>
+                        <li class="flex items-start"><span class="mr-3 text-cvNavy font-bold">•</span> Foco absoluto em Clean Code e organização.</li>
+                    </ul>
+                </div>
 
-                <!-- 2. Perfil LinkedIn -->
-                <a href="https://linkedin.com/in/guilherme-costavcruz" target="_blank" class="group bg-gray-800/80 hover:bg-[#0A66C2] border border-gray-700 hover:border-[#0A66C2] p-8 rounded-xl text-center transition-all duration-300 flex flex-col items-center">
-                    <div class="w-16 h-16 bg-gray-700 group-hover:bg-white/20 rounded-full flex items-center justify-center mb-4 transition-colors">
-                        <i class="fab fa-linkedin-in text-2xl text-secondary group-hover:text-white"></i>
+                <!-- Weaknesses -->
+                <div class="bg-cvBg p-10 rounded-[2rem] border border-cvBorder shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex items-center mb-6">
+                        <h3 class="text-2xl font-bold text-cvNavy tracking-tight">Fraquezas</h3>
+                        <span class="ml-auto text-cvBlue font-bold text-xl">W</span>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-2">2. LinkedIn</h3>
-                    <p class="text-sm text-gray-400 group-hover:text-blue-100 mb-4">Perfil completo, otimizado para networking digital.</p>
-                    <span class="mt-auto text-xs font-bold uppercase tracking-wider text-secondary group-hover:text-white">Visitar Perfil <i class="fas fa-external-link-alt ml-1"></i></span>
-                </a>
+                    <ul class="space-y-4 text-cvText leading-relaxed">
+                        <li class="flex items-start"><span class="mr-3 text-cvNavy font-bold">•</span> Perfil em início de carreira sem experiência corporativa.</li>
+                        <li class="flex items-start"><span class="mr-3 text-cvNavy font-bold">•</span> Necessidade de aprofundar metodologias ágeis em equipa.</li>
+                    </ul>
+                </div>
 
-                <!-- 3. Carta de Apresentação -->
-                <a href="docs/Carta_Apresentacao_Guilherme.pdf" target="_blank" class="group bg-gray-800/80 hover:bg-secondary border border-gray-700 hover:border-secondary p-8 rounded-xl text-center transition-all duration-300 flex flex-col items-center">
-                    <div class="w-16 h-16 bg-gray-700 group-hover:bg-white/20 rounded-full flex items-center justify-center mb-4 transition-colors">
-                        <i class="fas fa-envelope-open-text text-2xl text-secondary group-hover:text-white"></i>
+                <!-- Opportunities -->
+                <div class="bg-cvBg p-10 rounded-[2rem] border border-cvBorder shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex items-center mb-6">
+                        <h3 class="text-2xl font-bold text-cvNavy tracking-tight">Oportunidades</h3>
+                        <span class="ml-auto text-cvBlue font-bold text-xl">O</span>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-2">3. Carta Apresentação</h3>
-                    <p class="text-sm text-gray-400 group-hover:text-blue-100 mb-4">Narrativa adaptada para uma vaga de estágio de IT.</p>
-                    <span class="mt-auto text-xs font-bold uppercase tracking-wider text-secondary group-hover:text-white">Visualizar PDF <i class="fas fa-external-link-alt ml-1"></i></span>
-                </a>
+                    <ul class="space-y-4 text-cvText leading-relaxed">
+                        <li class="flex items-start"><span class="mr-3 text-cvNavy font-bold">•</span> Procura por programadores com forte capacidade de comunicação.</li>
+                        <li class="flex items-start"><span class="mr-3 text-cvNavy font-bold">•</span> Expansão de tecnologias de IA Generativa.</li>
+                    </ul>
+                </div>
 
-                <!-- 4. Vídeo CV -->
-                <a href="https://youtube.com/" target="_blank" class="group bg-gray-800/80 hover:bg-red-600 border border-gray-700 hover:border-red-600 p-8 rounded-xl text-center transition-all duration-300 flex flex-col items-center">
-                    <div class="w-16 h-16 bg-gray-700 group-hover:bg-white/20 rounded-full flex items-center justify-center mb-4 transition-colors">
-                        <i class="fas fa-video text-2xl text-secondary group-hover:text-white"></i>
+                <!-- Threats -->
+                <div class="bg-cvBg p-10 rounded-[2rem] border border-cvBorder shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex items-center mb-6">
+                        <h3 class="text-2xl font-bold text-cvNavy tracking-tight">Ameaças</h3>
+                        <span class="ml-auto text-cvBlue font-bold text-xl">T</span>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-2">4. Vídeo CV</h3>
-                    <p class="text-sm text-gray-400 group-hover:text-red-100 mb-4">Apresentação dinâmica e comunicação pessoal.</p>
-                    <span class="mt-auto text-xs font-bold uppercase tracking-wider text-secondary group-hover:text-white">Ver Vídeo <i class="fas fa-play ml-1"></i></span>
-                </a>
+                    <ul class="space-y-4 text-cvText leading-relaxed">
+                        <li class="flex items-start"><span class="mr-3 text-cvNavy font-bold">•</span> Mercado de juniores altamente competitivo nas TI.</li>
+                        <li class="flex items-start"><span class="mr-3 text-cvNavy font-bold">•</span> Rápida obsolescência técnica exige atualização constante.</li>
+                    </ul>
+                </div>
             </div>
-            <!-- Reminder to professor: 5. is this website -->
-            <p class="text-center text-sm text-gray-500 mt-12"><i class="fas fa-info-circle"></i> O elemento <b>5. Website Pessoal com Portefólio</b> refere-se à plataforma atual em que se encontra.</p>
+        </div>
+    </section>
+
+    <!-- Contactos -->
+    <section id="contactos" class="py-32 bg-cvBg">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-cvNavy tracking-tight inline-block border-b-4 border-cvBlue pb-2 text-center">Vamos conversar?</h2>
+                
+                <div class="flex flex-col md:flex-row justify-center items-center w-full text-cvNavy mt-12 gap-8 md:gap-0">
+                    <div class="flex flex-col items-center gap-3 flex-1">
+                        <div class="w-12 h-12 bg-cvNavy text-white rounded-full flex items-center justify-center shadow-md">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <div class="text-center">
+                            <p class="font-bold text-lg break-words px-4">guilherme.anselmo.ccosta@gmail.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="hidden md:block w-px h-16 bg-cvBorder shrink-0"></div>
+                    
+                    <div class="flex flex-col items-center gap-3 flex-1">
+                        <div class="w-12 h-12 bg-cvNavy text-white rounded-full flex items-center justify-center shadow-md">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                        </div>
+                        <div class="text-center">
+                            <p class="font-bold text-lg px-4">+351 936 650 045</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-cvSurface p-10 md:p-12 rounded-[2.5rem] border border-cvBorder shadow-sm">
+                <form action="#" method="POST">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <input type="text" id="nome" name="nome" placeholder="O teu nome" class="w-full px-5 py-4 rounded-2xl bg-cvBg border border-transparent text-cvNavy placeholder-cvText/60 focus:border-cvBlue outline-none transition-all shadow-sm" required>
+                        </div>
+                        <div>
+                            <input type="email" id="email" name="email" placeholder="O teu email" class="w-full px-5 py-4 rounded-2xl bg-cvBg border border-transparent text-cvNavy placeholder-cvText/60 focus:border-cvBlue outline-none transition-all shadow-sm" required>
+                        </div>
+                    </div>
+                    <div class="mb-8">
+                        <textarea id="mensagem" name="mensagem" rows="4" placeholder="Como posso ajudar?" class="w-full px-5 py-4 rounded-2xl bg-cvBg border border-transparent text-cvNavy placeholder-cvText/60 focus:border-cvBlue outline-none transition-all resize-none shadow-sm" required></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-cvNavy text-white font-bold py-4 rounded-full hover:bg-cvBlue transition-colors flex items-center justify-center gap-2 text-lg shadow-md">
+                        Enviar Mensagem
+                    </button>
+                </form>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-400 py-12 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left flex flex-col md:flex-row justify-between items-center">
-            <div class="mb-4 md:mb-0">
-                <span class="text-xl font-bold text-white">&lt;Guilhas /&gt;</span>
-                <p class="text-sm mt-2">© 2026 Guilherme Costa. Todos os direitos reservados.</p>
+    <footer class="bg-cvBg text-cvText font-medium py-16 border-t border-cvBorder">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="text-center md:text-left">
+                <h3 class="text-xl font-bold tracking-tight mb-1">
+                    <span class="text-cvNavy">Guilherme</span> <span class="text-cvBlue">Costa.</span>
+                </h3>
+                <p class="text-sm">Estudante de Eng. Informática</p>
             </div>
-            <div class="flex gap-4">
-                <a href="mailto:guilherme.anselmo.ccosta@gmail.com" class="hover:text-white transition-colors"><i class="fas fa-envelope text-xl"></i></a>
-                <a href="https://linkedin.com/in/guilherme-costavcruz" target="_blank" class="hover:text-white transition-colors"><i class="fab fa-linkedin text-xl"></i></a>
-                <a href="https://github.com/costavcruz" target="_blank" class="hover:text-white transition-colors"><i class="fab fa-github text-xl"></i></a>
+            
+            <div class="flex items-center gap-6">
+                <a href="https://linkedin.com/in/guilherme-costavcruz" target="_blank" class="hover:text-cvNavy transition-colors flex items-center gap-2 text-sm font-bold">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    LinkedIn
+                </a>
+                <a href="https://github.com/costavcruz" target="_blank" class="hover:text-cvNavy transition-colors flex items-center gap-2 text-sm font-bold">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    GitHub
+                </a>
             </div>
+        </div>
+        <div class="max-w-6xl mx-auto px-4 mt-12 pt-8 text-xs text-center text-cvText/60 border-t border-cvBorder">
+            <p>&copy; 2026 Guilherme Costa. Todos os direitos reservados. Projeto submetido para avaliação em Competências Comportamentais.</p>
         </div>
     </footer>
 
-    <!-- Script para Mobile Menu Toggle -->
-    <script>
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-        });
-
-        // Fechar menu ao clicar num link (mobile)
-        const links = menu.querySelectorAll('a');
-        links.forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.add('hidden');
-            });
-        });
-    </script>
 </body>
 </html>
