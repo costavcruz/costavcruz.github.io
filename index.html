@@ -72,30 +72,41 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="pt-40 pb-24 md:pt-56 md:pb-40 px-4 bg-cvBg">
-        <div class="max-w-4xl mx-auto text-left fade-in">
-            <h1 class="text-4xl md:text-6xl font-normal tracking-tight text-cvNavy mb-6 leading-tight">
-                Olá, sou o <strong class="font-bold"><span class="text-cvNavy">Guilherme</span> <span class="text-cvHighlight">Costa</span></strong>, <br class="hidden md:block"/> estudante de Engenharia Informática, sediado em Lisboa.
-            </h1>
-            
-            <div class="mt-10 flex flex-wrap items-center justify-start gap-8 text-cvNavy font-medium fade-in delay-1">
-                <a href="mailto:guilherme.anselmo.ccosta@gmail.com" class="flex items-center gap-2 hover:text-cvHighlight transition-colors text-lg">
-                    <svg class="w-5 h-5 text-cvHighlight" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                    guilherme.anselmo.ccosta@gmail.com
-                </a>
-                <a href="tel:+351936650045" class="flex items-center gap-2 hover:text-cvHighlight transition-colors text-lg">
-                    <svg class="w-5 h-5 text-cvHighlight" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-                    +351 936 650 045
-                </a>
-            </div>
-            
-            <div class="mt-12 flex flex-col sm:flex-row justify-start gap-4 fade-in delay-2">
-                <a href="#elementos" class="px-8 py-4 bg-cvSurface text-white font-medium rounded-full hover:bg-cvHighlight transition-all text-center shadow-lg shadow-cvNavy/10">
-                    Ver Portefólio
-                </a>
-                <a href="#contactos" class="px-8 py-4 bg-transparent border-2 border-cvSurface text-cvSurface font-bold rounded-full hover:bg-cvSurface hover:text-white transition-all text-center">
-                    Contactar
-                </a>
+    <section class="relative pt-40 pb-24 md:pt-56 md:pb-40 px-4 bg-cvBg overflow-hidden">
+        
+        <!-- Foto de Rosto no Fundo (Transparente) -->
+        <div class="absolute right-0 top-0 w-full md:w-1/2 h-full z-0 opacity-15 pointer-events-none flex justify-end items-end md:items-center">
+            <img src="Guilherme Costa Cara.png" alt="Cara Guilherme Costa" class="w-full h-[120%] md:h-full object-contain object-right-bottom md:object-right">
+        </div>
+
+        <div class="relative z-10 max-w-6xl mx-auto text-left fade-in">
+            <div class="max-w-3xl"> <!-- Container que empurra o texto um pouco mais para a esquerda -->
+                <!-- Imagem / Logótipo -->
+                <img src="Guilherme Costa Logótipo.png" alt="Logótipo Guilherme Costa" class="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-cvHighlight shadow-lg mb-8 bg-white">
+
+                <h1 class="text-4xl md:text-6xl font-normal tracking-tight text-cvNavy mb-6 leading-tight">
+                    Olá, sou o <strong class="font-bold"><span class="text-cvNavy">Guilherme</span> <span class="text-cvHighlight">Costa</span></strong>, <br class="hidden md:block"/> estudante de Engenharia Informática, sediado em Lisboa.
+                </h1>
+                
+                <div class="mt-10 flex flex-wrap items-center justify-start gap-8 text-cvNavy font-medium fade-in delay-1">
+                    <a href="mailto:guilherme.anselmo.ccosta@gmail.com" class="flex items-center gap-2 hover:text-cvHighlight transition-colors text-lg">
+                        <svg class="w-5 h-5 text-cvHighlight" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        guilherme.anselmo.ccosta@gmail.com
+                    </a>
+                    <a href="tel:+351936650045" class="flex items-center gap-2 hover:text-cvHighlight transition-colors text-lg">
+                        <svg class="w-5 h-5 text-cvHighlight" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                        +351 936 650 045
+                    </a>
+                </div>
+                
+                <div class="mt-12 flex flex-col sm:flex-row justify-start gap-4 fade-in delay-2">
+                    <a href="#elementos" class="px-8 py-4 bg-cvSurface text-white font-medium rounded-full hover:bg-cvHighlight transition-all text-center shadow-lg shadow-cvNavy/10">
+                        Ver Portefólio
+                    </a>
+                    <a href="#contactos" class="px-8 py-4 bg-transparent border-2 border-cvSurface text-cvSurface font-bold rounded-full hover:bg-cvSurface hover:text-white transition-all text-center">
+                        Contactar
+                    </a>
+                </div>
             </div>
         </div>
     </section>
