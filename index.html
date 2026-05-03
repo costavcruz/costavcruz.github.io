@@ -52,7 +52,7 @@
 <body class="bg-cvBg text-cvText antialiased selection:bg-cvHighlight selection:text-white">
 
     <!-- Navegação -->
-    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-xl border-b border-cvBorder transition-all">
+    <nav class="fixed w-full z-50 bg-white/60 backdrop-blur-xl border-b border-cvBorder transition-all">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex-shrink-0 flex items-center">
@@ -62,8 +62,8 @@
                 </div>
                 <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
                     <a href="#elementos" class="text-cvText hover:text-cvHighlight transition-colors">Portefólio</a>
-                    <a href="#sobre" class="text-cvText hover:text-cvHighlight transition-colors">Sobre Mim</a>
                     <a href="#projetos" class="text-cvText hover:text-cvHighlight transition-colors">Projetos</a>
+                    <a href="#sobre" class="text-cvText hover:text-cvHighlight transition-colors">Sobre Mim</a>
                     <a href="#swot" class="text-cvText hover:text-cvHighlight transition-colors">Análise SWOT</a>
                     <a href="#contactos" class="text-cvHighlight font-bold hover:text-cvNavy transition-colors">Vamos conversar</a>
                 </div>
@@ -158,6 +158,46 @@
                     <h3 class="text-xl font-bold text-white mb-3 tracking-tight">Carta</h3>
                     <p class="text-white/70 leading-relaxed">Carta de apresentação e motivação detalhada.</p>
                 </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projetos (Fundo Principal) -->
+    <section id="projetos" class="py-32 bg-cvBg text-cvNavy border-b border-cvBorder">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-cvNavy tracking-tight inline-block border-b-4 border-cvHighlight pb-2">Projetos</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Projeto 1 (Cartão em Fundo Secundário para sobressair) -->
+                <div class="bg-cvSurface text-white rounded-[2.5rem] shadow-lg p-12 flex flex-col justify-between group hover:shadow-xl hover:-translate-y-1 transition-all duration-500">
+                    <div>
+                        <div class="flex items-center gap-3 mb-6">
+                            <span class="bg-cvHighlight text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider">Kotlin</span>
+                            <span class="bg-cvHighlight text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider">Matrizes</span>
+                        </div>
+                        <h3 class="text-3xl font-bold text-white mb-6 tracking-tight">Minesweeper <br><span class="text-cvHighlight">(Campo DEISlado)</span></h3>
+                        <p class="text-white/80 text-lg leading-relaxed mb-10">
+                            Jogo lógico inspirado no Campo Minado, estruturado com bases em POO. Conceção de algoritmos de revelação recursiva e interface de terminal.
+                        </p>
+                    </div>
+                    <div>
+                        <a href="https://github.com/costavcruz" target="_blank" class="inline-flex items-center text-sm font-bold text-cvHighlight hover:text-white transition-colors">
+                            Ver no GitHub
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Futuro Projeto -->
+                <div class="bg-white rounded-[2.5rem] border-2 border-dashed border-cvBorder p-12 flex flex-col items-center justify-center text-center min-h-[400px]">
+                    <div class="w-16 h-16 rounded-full bg-cvSurface flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-cvNavy mb-3 tracking-tight">A trabalhar em mais projects...</h3>
+                    <p class="text-cvText px-6">Explorações com novas tecnologias e Integração de Sistemas em desenvolvimento.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -312,45 +352,6 @@
                             <p class="text-white/70 mt-1 font-medium">Restaurante "Cantinho dos 3", Feira de São Pedro</p>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projetos (Fundo Principal) -->
-    <section id="projetos" class="py-32 bg-cvBg text-cvNavy">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-cvNavy tracking-tight inline-block border-b-4 border-cvHighlight pb-2">Projetos</h2>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Projeto 1 (Cartão em Fundo Secundário para sobressair) -->
-                <div class="bg-cvSurface text-white rounded-[2.5rem] shadow-lg p-12 flex flex-col justify-between group hover:shadow-xl hover:-translate-y-1 transition-all duration-500">
-                    <div>
-                        <div class="flex items-center gap-3 mb-6">
-                            <span class="bg-cvHighlight text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider">Kotlin</span>
-                        </div>
-                        <h3 class="text-3xl font-bold text-white mb-6 tracking-tight">Minesweeper <br><span class="text-cvHighlight">(Campo DEISlado)</span></h3>
-                        <p class="text-white/80 text-lg leading-relaxed mb-10">
-                            Jogo lógico inspirado no Campo Minado, estruturado com bases em POO. Conceção de algoritmos de revelação recursiva e interface de terminal.
-                        </p>
-                    </div>
-                    <div>
-                        <a href="https://github.com/costavcruz" target="_blank" class="inline-flex items-center text-sm font-bold text-cvHighlight hover:text-white transition-colors">
-                            Ver no GitHub
-                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Futuro Projeto -->
-                <div class="bg-white rounded-[2.5rem] border-2 border-dashed border-cvBorder p-12 flex flex-col items-center justify-center text-center min-h-[400px]">
-                    <div class="w-16 h-16 rounded-full bg-cvSurface flex items-center justify-center mb-6">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4"></path></svg>
-                    </div>
-                    <h3 class="text-2xl font-bold text-cvNavy mb-3 tracking-tight">A trabalhar em mais projects...</h3>
-                    <p class="text-cvText px-6">Explorações com novas tecnologias e Integração de Sistemas em desenvolvimento.</p>
                 </div>
             </div>
         </div>
