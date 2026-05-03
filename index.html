@@ -72,11 +72,11 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative pt-40 pb-24 md:pt-56 md:pb-40 px-4 bg-cvBg overflow-hidden">
+    <section class="relative pt-40 pb-12 md:pt-56 md:pb-40 px-4 bg-cvBg overflow-hidden">
         
-        <!-- Foto de Rosto no Fundo (Transparente) -->
-        <div class="absolute right-0 top-0 w-full md:w-1/2 h-full z-0 opacity-[0.83] pointer-events-none flex justify-end items-end md:items-center -translate-x-8 md:-translate-x-16 lg:-translate-x-24">
-            <img src="Guilherme Costa Cara ftransparente.png" alt="Cara Guilherme Costa" class="w-full h-[120%] md:h-full object-contain object-right-bottom md:object-right">
+        <!-- Foto de Rosto no Fundo (Apenas Desktop) -->
+        <div class="hidden md:flex absolute right-0 top-0 w-full md:w-1/2 h-full z-0 opacity-[0.83] pointer-events-none justify-end items-end md:items-center -translate-x-8 md:-translate-x-16 lg:-translate-x-24">
+            <img src="Guilherme Costa Cara.png" alt="Cara Guilherme Costa" class="w-full h-[120%] md:h-full object-contain object-right-bottom md:object-right">
         </div>
 
         <div class="relative z-10 max-w-6xl mx-auto text-left fade-in">
@@ -105,6 +105,13 @@
                     </a>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Foto de Rosto (Apenas Mobile) -->
+    <section class="block md:hidden bg-cvBg pb-24 px-4 overflow-hidden fade-in delay-2">
+        <div class="flex justify-center items-center w-full">
+            <img src="Guilherme Costa Cara.png" alt="Cara Guilherme Costa" class="w-64 h-64 sm:w-80 sm:h-80 object-contain object-bottom opacity-90 hover:opacity-100 transition-opacity">
         </div>
     </section>
 
